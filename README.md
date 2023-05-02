@@ -1,3 +1,5 @@
+ure, here's the updated README.md file based on the Makefile:
+
 # MountTracker
 
 `mount-tracker` is a simple utility that allows you to track mount changes in real-time. 
@@ -12,13 +14,15 @@
 To build `mount-tracker`, run the following command:
 
 ```bash
-$CC $(pkg-config --cflags --libs glib-2.0) mount-tracker.c -o mount-tracker
+make
 ```
+
+This will compile and link the source files and create the `mount-tracker` executable.
 
 ## Usage
 
 ```bash
-mount-tracker -d <device> -t <timeout>
+./mount-tracker -d <device> -t <timeout>
 ```
 
 - `-d`: A mandatory option that specifies the list of devices to monitor. Multiple devices can be passed as arguments.
@@ -27,7 +31,7 @@ mount-tracker -d <device> -t <timeout>
 ## Example
 
 ```bash
-mount-tracker -d sda -d sdb
+./mount-tracker -d sda -d sdb
 ```
 
 **Note:** Make sure that the devices passed in `-d` are already mounted before running the application.
