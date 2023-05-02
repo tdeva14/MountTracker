@@ -48,13 +48,14 @@ GString* snap_mounts()
 {
 	FILE *fptr = NULL;
 	char buff[1024] = {0};
+	int i = 0;
 
 	GString* m_mounts = g_string_new("");
 
 	fptr = fopen(PROC_MOUNTINFO,"r");
 	if (fptr) {
 		while (fgets(buff, sizeof(buff), fptr)) {
-			for (int i = 0; i < dev_mon_list->len; i++) {
+			for (i = 0; i < dev_mon_list->len; i++) {
 				if (NULL != strstr(buff, g_array_index(dev_mon_list, char*, i)))
 					g_string_append(m_mounts, buff);
 			}
@@ -79,9 +80,9 @@ int save_mountinfo_list(GString *snapped_mounts, gboolean trigger)
 	char* mounts_str = g_strdup(snapped_mounts->str);
 	g_string_free(snapped_mounts, TRUE);
 
+	int n = 0;
 	char newline[] = "\n";
 	char space[] = " ";
-
 	char *out_str = NULL, *in_str = NULL;
 	char *saveptr1 = NULL, *saveptr2 = NULL;
 
@@ -94,7 +95,7 @@ int save_mountinfo_list(GString *snapped_mounts, gboolean trigger)
 
 		in_str = strtok_r(out_str, space, &saveptr2);
 
-		for (int n = 1; in_str != NULL; n++) {
+		for (n = 1; in_str != NULL; n++) {
 			if (n == 1) {
 				t_mount_info->id = atoi(in_str);
 			} else if (n == 2) {
