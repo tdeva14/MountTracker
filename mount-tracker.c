@@ -25,10 +25,12 @@ typedef struct mountInfo {
 	char *super_opts;
 } mount_info;
 
+// This is an array of device names to monitor
 static GArray *dev_mon_list = NULL;
+// These are the previous and current lists of mount_info structs
 static GSList *prev_mount_list = NULL, *curr_mount_list = NULL;
 
-
+// This function prints the usage instructions for the mount-tracker application
 void print_usage()
 {
 	printf("Usage: mount-tracker -d <device> -t <timeout>\n");
@@ -41,7 +43,7 @@ void print_usage()
 }
 
 
-// Returned GString needs to be freed when done
+// This function returns a GString containing the mount information for the specified devices
 GString* snap_mounts()
 {
 	FILE *fptr = NULL;
@@ -71,7 +73,7 @@ GString* snap_mounts()
 	return m_mounts;
 }
 
-
+// This function saves the mount information to a GSList of mount_info structs
 int save_mountinfo_list(GString *snapped_mounts, gboolean trigger)
 {
 	char* mounts_str = g_strdup(snapped_mounts->str);
