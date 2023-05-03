@@ -1,5 +1,3 @@
-ure, here's the updated README.md file based on the Makefile:
-
 # MountTracker
 
 `mount-tracker` is a simple utility that allows you to track mount changes in real-time. 
